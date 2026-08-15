@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>רשתות חברתיות · דף ניהול</title>
+<meta name="description" content="מרכז ניהול הפוסטים — הופה, לרני וגולדפיש במקום אחד">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📣</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@600;700;800&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --ink:#3D3A34;
+    --soft:#8A8578;
+    --card:#FFFFFF;
+    --line:#EAE2D2;
+    --hopa:#E85D8A;   --hopa-soft:#FDEDF3;
+    --learni:#7FB685; --learni-soft:#EDF6EE;
+    --goldi:#1F9EBF;  --goldi-soft:#E7F5F9;
+    --radius:18px;
+    --shadow:0 6px 24px rgba(61,58,52,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Heebo',sans-serif;
+    background:var(--cream);
+    background-image:radial-gradient(rgba(61,58,52,.045) 1px, transparent 1px);
+    background-size:22px 22px;
+    color:var(--ink);
+    display:flex;flex-direction:column;
+  }
+
+  /* ---------- top bar ---------- */
+  header{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+    padding:14px 26px 0;
+  }
+  .brand{display:flex;align-items:baseline;gap:12px;animation:drop .5s ease both}
+  .brand h1{
+    font-family:'Playpen Sans Hebrew',cursive;
+    font-size:1.35rem;font-weight:800;letter-spacing:.5px;
+  }
+  .brand .sub{color:var(--soft);font-size:.85rem}
+  @keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+  /* ---------- tabs ---------- */
+  nav{display:flex;gap:10px;margin-inline-start:auto;flex-wrap:wrap;padding-bottom:2px}
+  .tab{
+    --c:var(--ink);--bg:var(--card);
+    font-family:'Heebo',sans-serif;
+    display:flex;align-items:center;gap:8px;
+    border:2px solid var(--line);border-radius:999px;
+    background:var(--bg);color:var(--ink);
+    padding:9px 20px;font-size:1rem;font-weight:700;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .2s, border-color .2s;
+    animation:drop .5s ease both;
+  }
+  .tab:nth-child(2){animation-delay:.06s}
+  .tab:nth-child(3){animation-delay:.12s}
+  .tab .dot{width:11px;height:11px;border-radius:50%;background:var(--c);flex-shrink:0}
+  .tab:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .tab.active{background:var(--c);border-color:var(--c);color:#fff}
+  .tab.active .dot{background:#fff}
+  .tab.hopa{--c:var(--hopa)}
+  .tab.learni{--c:var(--learni)}
+  .tab.goldi{--c:var(--goldi)}
+  .tab:not(.active).hopa{background:var(--hopa-soft)}
+  .tab:not(.active).learni{background:var(--learni-soft)}
+  .tab:not(.active).goldi{background:var(--goldi-soft)}
+
+  /* ---------- stage ---------- */
+  main{flex:1;display:flex;flex-direction:column;padding:12px 26px 22px;min-height:0}
+  .stage{
+    flex:1;position:relative;min-height:0;
+    background:var(--card);
+    border:2px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:border-color .25s;
+  }
+  .stage[data-active="hopa"]{border-color:var(--hopa)}
+  .stage[data-active="learni"]{border-color:var(--learni)}
+  .stage[data-active="goldi"]{border-color:var(--goldi)}
+  .panel{position:absolute;inset:0;display:none}
+  .panel.show{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .panel iframe{width:100%;height:100%;border:0;background:#fff}
+  .loading{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--soft);font-size:.95rem;gap:10px;pointer-events:none;
+  }
+  .loading::before{
+    content:'';width:18px;height:18px;border-radius:50%;
+    border:3px solid var(--line);border-top-color:var(--ink);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .toolbar{
+    display:flex;align-items:center;gap:14px;
+    padding:8px 4px 0;font-size:.82rem;color:var(--soft);
+  }
+  .toolbar a{color:inherit;font-weight:500;text-decoration:none;border-bottom:1px dashed var(--soft)}
+  .toolbar a:hover{color:var(--ink);border-color:var(--ink)}
+
+  @media (max-width:640px){
+    header{padding:12px 14px 0}
+    main{padding:10px 10px 14px}
+    nav{margin-inline-start:0;width:100%}
+    .tab{flex:1;justify-content:center;padding:8px 10px;font-size:.9rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <h1>📣 רשתות חברתיות</h1>
+    <span class="sub">דף ניהול · הופה · לרני · גולדפיש</span>
+  </div>
+  <nav id="tabs">
+    <button class="tab hopa" data-key="hopa"><span class="dot"></span>הופה</button>
+    <button class="tab learni" data-key="learni"><span class="dot"></span>לרני</button>
+    <button class="tab goldi" data-key="goldi"><span class="dot"></span>גולדפיש</button>
+  </nav>
+</header>
+
+<main>
+  <div class="stage" id="stage">
+    <div class="panel" data-key="hopa"><div class="loading">טוען את דף הניהול של הופה…</div></div>
+    <div class="panel" data-key="learni"><div class="loading">טוען את מרכז הפוסטים של לרני…</div></div>
+    <div class="panel" data-key="goldi"><div class="loading">טוען את מרכז הקמפיין של גולדי…</div></div>
+  </div>
+  <div class="toolbar">
+    <span>💡 הדף מציג את דפי הניהול המקוריים — כל עדכון בהם מופיע כאן אוטומטית.</span>
+    <a id="openfull" href="#" target="_blank" rel="noopener">פתיחת הדף הנוכחי בחלון מלא ↗</a>
+  </div>
+</main>
+
+<script>
+const PAGES = {
+  hopa:   'https://meytalp-dev.github.io/hopa-nihul/facebook.html',
+  learni: 'https://meytalp-dev.github.io/learni-pages/posts/',
+  goldi:  'goldfish/'
+};
+
+const tabs   = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.panel');
+const stage  = document.getElementById('stage');
+const openfull = document.getElementById('openfull');
+
+function show(key){
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.key === key));
+  panels.forEach(p => {
+    const on = p.dataset.key === key;
+    p.classList.toggle('show', on);
+    if (on && !p.querySelector('iframe')) {
+      const f = document.createElement('iframe');
+      f.src = PAGES[key];
+      f.loading = 'eager';
+      f.addEventListener('load', () => { const l = p.querySelector('.loading'); if (l) l.remove(); });
+      p.appendChild(f);
+    }
+  });
+  stage.dataset.active = key;
+  openfull.href = new URL(PAGES[key], location.href).href;
+  try { localStorage.setItem('social-hub-tab', key); } catch(e){}
+}
+
+tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.key)));
+
+let start = 'hopa';
+try { const s = localStorage.getItem('social-hub-tab'); if (s && PAGES[s]) start = s; } catch(e){}
+show(start);
+</script>
+
+</body>
+</html>

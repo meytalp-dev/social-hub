@@ -1,0 +1,321 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goldfish · תנ״ך-הדמות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#23150a; --ink2:#6b5b49; --accent:#EE7A30; --gold:#F5A623;
+    --bg:#FDF7EF; --surface:#ffffff; --border:#efe4d4; --soft:#FFF3E4;
+    --ok:#2FA36B; --no:#D8583C;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#f2e9dd; --ink2:#b3a892; --bg:#17130d; --surface:#211b13; --border:#382f21; --soft:#241d13; }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Heebo',system-ui,sans-serif; background:
+      radial-gradient(80% 50% at 85% -5%, #FFE8CC 0%, transparent 55%),
+      var(--bg);
+    color:var(--ink); line-height:1.65; padding:40px 18px 80px;
+  }
+  .wrap{max-width:820px;margin:0 auto}
+
+  header{text-align:center;margin-bottom:14px}
+  header .fish{width:120px;height:100px;margin:0 auto}
+  header .fish svg{width:100%;height:100%;overflow:visible}
+  header h1{font-size:34px;font-weight:900;margin-top:6px}
+  header h1 b{color:var(--accent)}
+  header .tag{color:var(--ink2);font-weight:600;margin-top:2px}
+  .meta{display:inline-block;margin-top:12px;font-size:12.5px;color:var(--ink2);
+    background:var(--soft);border:1px solid var(--border);border-radius:999px;padding:5px 16px}
+
+  .lead{
+    background:linear-gradient(180deg,#FFF6EA,#FFF0DF);
+    border:1px solid var(--border);border-right:5px solid var(--accent);
+    border-radius:16px;padding:18px 20px;margin:26px 0;color:#5a4632;font-size:15px
+  }
+  .lead b{color:var(--accent)}
+
+  section{background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    padding:22px 24px;margin:16px 0;box-shadow:0 8px 26px rgba(40,28,12,.05)}
+  section h2{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.4px;
+    text-transform:none;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  section h2 .n{background:var(--accent);color:#fff;width:24px;height:24px;border-radius:8px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+  .oneliner{font-size:20px;font-weight:800;line-height:1.4}
+  .oneliner b{color:var(--accent)}
+
+  ul.clean{list-style:none;display:grid;gap:9px}
+  ul.clean li{padding-right:22px;position:relative}
+  ul.clean li::before{content:'🐟';position:absolute;right:0;top:1px;font-size:13px}
+  ul.clean li b{color:var(--ink)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr}}
+
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  table td{padding:9px 12px;border:1px solid var(--border);vertical-align:top}
+  table tr td:first-child{background:rgba(47,163,107,.07)}
+  table tr td:last-child{background:rgba(216,88,60,.06)}
+  .yes{color:var(--ok);font-weight:800}
+  .no{color:var(--no);font-weight:800}
+
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{background:var(--soft);border:1px solid var(--border);border-radius:12px;
+    padding:8px 14px;font-size:14px;font-weight:600}
+  .chip b{color:var(--accent)}
+
+  .values li b{color:var(--accent)}
+  .signature{background:var(--accent);color:#fff;border-radius:14px;padding:14px 18px;
+    font-weight:800;font-size:16px;text-align:center;margin-top:6px}
+
+  .formats{display:grid;gap:12px}
+  .fmt{display:flex;gap:14px;align-items:flex-start;background:var(--soft);
+    border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .fmt .ico{font-size:24px;line-height:1}
+  .fmt .t{font-weight:800}
+  .fmt .d{color:var(--ink2);font-size:13.5px}
+  .fmt .k{margin-right:auto;font-size:11.5px;color:var(--accent);font-weight:700;white-space:nowrap}
+
+  .rule{display:flex;gap:16px;align-items:center;justify-content:center;
+    background:linear-gradient(180deg,#FFF6EA,#FFEFDD);border:1px solid var(--border);
+    border-radius:16px;padding:16px;font-weight:800;font-size:17px}
+  .rule .big{font-size:26px;color:var(--accent)}
+
+  .voice{background:var(--soft);border:1px solid var(--border);border-radius:14px;
+    padding:14px 16px;margin-top:10px}
+  .voice .who{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:5px}
+  .voice p{font-size:14.5px;color:#4a3a2a}
+
+  .decision{border:2px dashed var(--accent);background:var(--soft);border-radius:16px;padding:18px 20px}
+  .decision h2{color:var(--accent)}
+  .rec{background:var(--accent);color:#fff;border-radius:8px;padding:2px 10px;font-weight:800;font-size:13px}
+
+  .foot{text-align:center;color:var(--ink2);font-size:13px;margin-top:24px}
+
+  /* print / PDF */
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  @media print{
+    body{ background:#fff; padding:0; }
+    .wrap{ max-width:none; }
+    section,.lead,.decision,.rule,.voice,.fmt,.signature{ box-shadow:none; break-inside:avoid; }
+    header{ break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="fish">
+      <svg viewBox="-20 -30 170 130" aria-hidden="true">
+        <path d="M76 40 L112 16 L103 40 L112 64 Z" fill="#F5A623"/>
+        <path d="M38 22 Q48 0 64 19 Q50 24 38 22" fill="#F5A623"/>
+        <ellipse cx="48" cy="42" rx="35" ry="23" fill="#EE7A30"/>
+        <path d="M46 24 Q56 42 46 60" stroke="#D96A20" stroke-width="2.5" fill="none" opacity="0.55"/>
+        <path d="M30 58 Q38 70 50 62 Q42 56 30 58" fill="#F5A623"/>
+        <path d="M21 36 Q26 31 31 36" stroke="#1A1A1A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <path d="M15 47 Q19 50 23 47" stroke="#B04E10" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>תנ״ך-הדמות · <b>Goldfish</b></h1>
+    <p class="tag">מסמך-המקור לדמות · כל סרטון, פוסט ובועת-דיבור נגזרים מכאן</p>
+    <span class="meta">טיוטה 1 · 23.7.2026 · לאישור מיטל + לירון</span>
+  </header>
+
+  <div class="lead">
+    מבוסס על מה שעובד אצל דמויות-מותג מצליחות (Lu do Magalu, Duolingo "Duo"):
+    <b>אישיות עקבית + תועלת אמיתית מנצחות גרפיקה מושלמת.</b>
+  </div>
+
+  <section class="decision">
+    <h2><span class="n">0</span> השם — ההחלטה היחידה שנשארה</h2>
+    <p>המותג הוא <b>Goldfish</b>. לדמות עצמה כדאי כינוי חם (כמו ש"Duo" הוא הינשוף של Duolingo).</p>
+    <div class="chips" style="margin-top:12px">
+      <span class="chip"><b>גּוֹלְדִי</b> <span class="rec">מומלץ</span></span>
+      <span class="chip">Goldfish (כמו Geico Gecko)</span>
+      <span class="chip">זהבי</span>
+      <span class="chip">דָּגִי</span>
+    </div>
+    <p style="margin-top:10px;color:var(--ink2);font-size:13.5px">המסמך כתוב עם "גולדי" כברירת-מחדל — קל להחליף.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">1</span> משפט-ההגדרה</h2>
+    <p class="oneliner">גולדי הוא הדג שצולל בים המענקים ומביא לעמותות <b>רק את ההתאמות</b> — כדי שאף עמותה לא תפספס מימון בגלל דדליין.</p>
+  </section>
+
+  <div class="grid2">
+    <section>
+      <h2><span class="n">2</span> אישיות — 5 תכונות</h2>
+      <ul class="clean">
+        <li><b>חם ואופטימי</b> — לכל עמותה מגיעה הזדמנות שווה.</li>
+        <li><b>חכם-ים</b> — מכיר את הזרמים: בירוקרטיה, קולות קוראים, תנאי-סף.</li>
+        <li><b>שנון בעדינות</b> — הומור על הכאב המשותף, לעולם לא <em>על</em> העמותה.</li>
+        <li><b>נלהב לעזור</b> — שמח כשמצא התאמה. עוזר, לא מוכר.</li>
+        <li><b>צנוע וישר</b> — מודה כשלא יודע, מציב ציפיות אמת.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span> קול וטון</h2>
+      <ul class="clean">
+        <li>עברית פשוטה, בגובה העיניים. <b>אפס ז'רגון תאגידי.</b></li>
+        <li>משפטים קצרים — כמו שמדברים, לא כמו ברושור.</li>
+        <li>מטפורות ים/דיג <b>במידה</b>: צולל, רשת, פנינה, גל.</li>
+        <li>מבין את הכאב <em>לפני</em> שהוא פותר.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="n">4</span> ערכים</h2>
+    <ul class="clean values">
+      <li><b>אף עמותה לא תפספס מימון בגלל דדליין</b> — החתימה הרגשית.</li>
+      <li><b>הזמן של עמותה יקר</b> — כל דקה על טפסים היא דקה שלא עוזרים לאנשים.</li>
+      <li><b>פשטות מול בירוקרטיה</b> — מסבכים? אני מיישר.</li>
+      <li><b>הזדמנות שווה לקטנות</b> — לא רק לעמותות עם מחלקת-גיוס.</li>
+      <li><b>אמון ושקיפות</b> — אני דג-דמות, לא מעמיד פנים שאני אדם.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span> מה כן / מה לא</h2>
+    <table>
+      <tr><td><span class="yes">✅</span> נותן ערך אמיתי (טיפ, קול קורא)</td><td><span class="no">🚫</span> דוחף "תירשמו" בכל משפט</td></tr>
+      <tr><td><span class="yes">✅</span> מודה כשלא יודע</td><td><span class="no">🚫</span> ממציא / מבטיח "מימון מובטח"</td></tr>
+      <tr><td><span class="yes">✅</span> מצחיק בעדינות על הכאב המשותף</td><td><span class="no">🚫</span> צוחק על עמותה או מגיש</td></tr>
+      <tr><td><span class="yes">✅</span> מדבר פשוט וחם</td><td><span class="no">🚫</span> ז'רגון, התנשאות, ראשי-תיבות</td></tr>
+      <tr><td><span class="yes">✅</span> שקוף שהוא דמות/AI</td><td><span class="no">🚫</span> מעמיד פנים שהוא אדם</td></tr>
+    </table>
+  </section>
+
+  <div class="grid2">
+    <section>
+      <h2><span class="n">6</span> חתימות מילוליות</h2>
+      <div class="chips">
+        <span class="chip">פתיח: "היי, אני Goldfish 🐟"</span>
+        <span class="chip">"יאללה, לצלול"</span>
+        <span class="chip">"מצאתי לך פנינה 🦪"</span>
+        <span class="chip">"אל תיתנו לדדליין לחמוק"</span>
+        <span class="chip">"אני עוד לומד לשחות…"</span>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">7</span> חתימה ויזואלית · נעול</h2>
+      <ul class="clean">
+        <li><b>הדג האקספרסיבי</b> — עין עם נצנוץ, חיוך, זנב זורם. לא לוגו-האתר השטוח.</li>
+        <li>צבעים: <b>#EE7A30</b> · <b>#F5A623</b> · רקע קרם.</li>
+        <li>Heebo · RTL · אביזרים קלים על הדג (משקפיים/כובע), בלי לשנות פרצוף.</li>
+        <li><b>דיבור = בועה מגולדי:</b> כל מה שהוא אומר יוצא כבועת-דיבור ממנו — לא כתובית בתחתית.</li>
+        <li><b>אותו דג בדיוק בכל מקום</b> = זיהוי.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="n">8</span> 4 פורמטים חוזרים לסרטונים <span style="font-weight:600;color:var(--ink2);font-size:12px">· סגנון Duo · 8–20ש' · 9:16</span></h2>
+    <div class="formats">
+      <div class="fmt"><div class="ico">🎣</div><div><div class="t">"קול קורא של השבוע"</div><div class="d">הדג מציף הזדמנות מימון אמיתית ולמי מתאימה.</div></div><div class="k">תועלת טהורה</div></div>
+      <div class="fmt"><div class="ico">⚠️</div><div><div class="t">"טעות שעולה לכם כסף"</div><div class="d">טעות נפוצה בהגשה / דדליין שפוספס, ב-10 שניות.</div></div><div class="k">ערך + הזדהות</div></div>
+      <div class="fmt"><div class="ico">💬</div><div><div class="t">"הדג עונה"</div><div class="d">שאלה אמיתית של עמותה, תשובה קצרה ושנונה.</div></div><div class="k">קהילה</div></div>
+      <div class="fmt"><div class="ico">⏰</div><div><div class="t">"רגע לפני דדליין"</div><div class="d">הומור-הזדהות על הפאניקה, ואז "אני שומר עליך".</div></div><div class="k">רגש + מותג</div></div>
+    </div>
+    <p style="margin-top:12px;color:var(--ink2);font-size:13.5px">קצב: 2–3 בשבוע · פורמט-עוגן קבוע + אחד מתחלף.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">9</span> חוק ה-80/20</h2>
+    <div class="rule"><span class="big">80%</span> ערך/כיף<span style="color:var(--ink2)">·</span><span class="big">20%</span> קריאה-לפעולה</div>
+    <p style="margin-top:10px;color:var(--ink2);font-size:13.5px;text-align:center">המכירה מגיעה כי אוהבים את גולדי — לא כי דחפנו. זה ההבדל בין Duo לפרסומת.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">10</span> Guardrails — לא לשכוח</h2>
+    <ul class="clean">
+      <li><b>ציפיות-אמת:</b> המוצר לפני השקה — גולדי אומר זאת בחן, לא מסתיר.</li>
+      <li><b>שקיפות:</b> דמות/AI בגלוי. זה בונה אמון — היתרון על אינפלואנסרים אנושיים-למראה.</li>
+      <li><b>פרטיות:</b> לעולם לא לחשוף נתוני-עמותה אמיתיים בתוכן ציבורי.</li>
+      <li><b>ספֵּציפיוּת ישראלית:</b> מדבר את עולם-העמותות המקומי. זה נכס.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">11</span> שתי דוגמאות-קול</h2>
+    <div class="voice">
+      <div class="who">🎬 סרטון "טעות שעולה כסף"</div>
+      <p>"רואה את הקול הקורא הזה? 300 אלף ₪. 🎣 רוב העמותות פוספסו אותו — לא כי לא התאימו, אלא כי גילו אותו יום <em>אחרי</em> הדדליין. זה בדיוק התפקיד שלי כדי שזה לא יקרה."</p>
+    </div>
+    <div class="voice">
+      <div class="who">💬 הודעת-וואטסאפ · מציאת התאמה</div>
+      <p>"מצאתי לך פנינה 🦪 קול קורא של משרד התרבות, מתאים ב-91% לפרופיל שלכם, דדליין בעוד 9 ימים. רוצה שאכין טיוטת הגשה?"</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">12</span> בנק משפטים מצחיקים <span style="font-weight:600;color:var(--ink2);font-size:12px">· במידה, לא בכל משפט</span></h2>
+    <div class="chips">
+      <span class="chip">"טופס עם 14 נספחים? שחיתי דרך גרועים יותר."</span>
+      <span class="chip">"'תנאי סף' זה בסך הכל מים עכורים — אני רואה מבעדם."</span>
+      <span class="chip">"דדליין זה גל: או שגולשים עליו, או שהוא מכסה אתכם."</span>
+      <span class="chip">"'עוד יש זמן' — המשפט האחרון של כל מי שפספס מימון."</span>
+      <span class="chip">"אני דג. אין לי ידיים. ובכל זאת הכנתי לכם טיוטה. 🤔"</span>
+      <span class="chip">"'זיכרון של דג'? אני זוכר כל קול קורא מ-2019."</span>
+      <span class="chip">"אמרו לי 'אתה סתם דג'. אותו דג הביא 300 אלף ₪."</span>
+      <span class="chip">"מצאתי התאמה של 94%. ה-6%? גם אני לא מושלם."</span>
+      <span class="chip">"העמותה שלכם קטנה? גם אני. שאלו את הכריש מי מפחד ממי."</span>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">13</span> מפת-סרטונים · לפי סדר <span style="font-weight:600;color:var(--ink2);font-size:12px">· מכירים → סומכים → אוהבים → מצטרפים</span></h2>
+    <div style="font-weight:800;color:var(--accent);margin:6px 0 6px">שלב א · היכרות</div>
+    <ul class="clean">
+      <li><b>1. "היי, אני גולדי"</b> — הפתיח: מי אני ומה אני עושה. <em>(= הטיזר הקיים)</em></li>
+      <li><b>2. "למה דג?"</b> — סיפור-מקור קליל. אישיות.</li>
+      <li><b>3. "מה גולדי לא עושה"</b> — הומור-מבדל.</li>
+    </ul>
+    <div style="font-weight:800;color:var(--accent);margin:14px 0 6px">שלב ב · ערך</div>
+    <ul class="clean">
+      <li><b>4. "קול קורא של השבוע"</b> — הזדמנות אמיתית. פורמט-עוגן.</li>
+      <li><b>5. "טעות שעולה כסף"</b> — טעות נפוצה ב-10 שניות.</li>
+      <li><b>6. "תרגום מבירוקרטית לעברית"</b> — מנופח → אנושי.</li>
+      <li><b>7. "מיתוס / אמת"</b> — מעצים עמותות קטנות.</li>
+    </ul>
+    <div style="font-weight:800;color:var(--accent);margin:14px 0 6px">שלב ג · הזדהות</div>
+    <ul class="clean">
+      <li><b>8. "רגע לפני דדליין"</b> — הומור-פאניקה.</li>
+      <li><b>9. "יומן של דג" (POV)</b> — יום בחיי גולדי.</li>
+      <li><b>10. "הדג עונה"</b> — שאלה מעמותה → אינטראקציה.</li>
+    </ul>
+    <div style="font-weight:800;color:var(--accent);margin:14px 0 6px">שלב ד · המרה</div>
+    <ul class="clean">
+      <li><b>11. "לפני / אחרי גולדי"</b> — מוצר בעקיפין.</li>
+      <li><b>12. "אנחנו פותחים 🎉"</b> — ההשקה. CTA חזק.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">14</span> קול ואודיו לגולדי</h2>
+    <p style="font-weight:700;margin-bottom:8px">כן — אבל כשכבה, לא כבסיס. רוב הצפייה מושתקת → הבועה והכיתוב תמיד נושאים את המסר.</p>
+    <ul class="clean">
+      <li><b>אופי-קול:</b> חם, ידידותי, קצת שובב, עברית טבעית.</li>
+      <li><b>חתימת-סאונד:</b> צליל "בּלוּפּ" קטן כשגולדי מופיע / הבועה קופצת — כמו Duolingo. זול ומשתלם.</li>
+      <li><b>מסלול:</b> ElevenLabs (פייפליין קיים) + QA. טסט: 2–3 קולות → בוחרים.</li>
+      <li><b>מוזיקת-רקע:</b> טראק קליל מתחת. משדרג מאוד.</li>
+    </ul>
+  </section>
+
+  <div class="signature">מכאן נגזר הכל — דף, סרטונים, סדרה, ואפילו גרסת-AI-משוחחת עתידית: אותו קול, אותם ערכים, אותה חתימה.</div>
+
+  <p class="foot">🐟 Goldfish · Character Bible · טיוטה לעריכה</p>
+
+</div>
+</body>
+</html>

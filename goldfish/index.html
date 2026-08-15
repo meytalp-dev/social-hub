@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐟 גולדי · מרכז הקמפיין</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#EE7A30; --gold:#F5A623; --amber:#c9761c; --navy:#1f2a44;
+    --cream:#FFF7EE; --cream2:#fdf3e6; --ink:#2a2a2a; --muted:#8a7a66;
+    --line:#eadfce; --ok:#2e9e5b; --next:#e07a2f; --idea:#b9862f;
+    --shadow:0 4px 18px rgba(200,150,80,.10);
+    --shadow-lg:0 10px 34px rgba(200,140,60,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Assistant","Heebo","Segoe UI",sans-serif;
+    background:radial-gradient(1200px 600px at 80% -5%,#fff3e0 0,transparent 60%),
+               radial-gradient(900px 500px at -5% 10%,#ffe9cf 0,transparent 55%),
+               linear-gradient(180deg,#fffdf9,#fdf3e6 60%,#fbeeda);
+    color:var(--ink);line-height:1.6;min-height:100vh;
+    padding:0 16px 90px;
+  }
+  .wrap{max-width:1060px;margin:0 auto}
+  h1,h2,h3{font-family:"Heebo",sans-serif}
+  a{color:var(--orange)}
+
+  /* ===== HERO ===== */
+  header.hero{text-align:center;padding:46px 12px 26px}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:700;color:var(--amber);
+    background:#fff3e2;border:1px solid var(--line);padding:5px 14px;border-radius:30px;letter-spacing:.3px}
+  h1{font-size:2.6rem;color:var(--navy);font-weight:900;letter-spacing:.3px;margin:14px 0 6px;line-height:1.1}
+  h1 .fish{color:var(--orange)}
+  .hero .sub{color:var(--muted);font-size:1.08rem;max-width:640px;margin:0 auto}
+  .rule{height:5px;width:130px;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:4px;margin:22px auto 0}
+  .hstats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .hstat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 20px;box-shadow:var(--shadow);min-width:120px}
+  .hstat b{display:block;font-family:"Heebo";font-size:1.5rem;color:var(--orange);font-weight:800;line-height:1}
+  .hstat span{font-size:.82rem;color:var(--muted)}
+
+  /* ===== NAV ===== */
+  nav.jump{position:sticky;top:0;z-index:40;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+    padding:12px;margin:8px auto 34px;max-width:920px;
+    background:rgba(255,251,244,.86);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+  nav.jump a{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--navy);
+    padding:7px 14px;border-radius:20px;transition:.18s}
+  nav.jump a:hover{background:var(--orange);color:#fff}
+  nav.jump a.ext{color:var(--amber)}
+
+  /* ===== SECTIONS ===== */
+  section{margin:0 auto 56px;scroll-margin-top:78px}
+  .sec-head{margin-bottom:20px}
+  h2{font-size:1.55rem;color:var(--navy);font-weight:800;display:flex;align-items:center;gap:10px}
+  h2 .em{font-size:1.5rem}
+  .sec-head p{color:var(--muted);font-size:.98rem;margin-top:4px}
+
+  /* ===== VIDEO GRID ===== */
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+  .vcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s}
+  .vcard:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+  .vcard .frame{position:relative;background:#12233d;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center}
+  .novid{color:#8fb3d9;font-size:.85rem;padding:16px;text-align:center;line-height:1.6}
+  .vcard video{width:100%;height:100%;object-fit:cover;display:block;background:#12233d}
+  .vcard .num{position:absolute;top:10px;right:10px;background:rgba(31,42,68,.82);color:#fff;
+    font-family:"Heebo";font-weight:800;font-size:.78rem;padding:3px 10px;border-radius:20px;z-index:2}
+  .vcard .body{padding:15px 16px 17px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .vcard .ttl{font-family:"Heebo";font-size:1.12rem;font-weight:800;color:var(--navy)}
+  .vcard .hook{font-size:.9rem;color:var(--amber);font-style:italic;line-height:1.45;flex:1}
+  .chip{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:20px;color:#fff;align-self:flex-start}
+  .c-ok{background:var(--ok)} .c-next{background:var(--next)} .c-var{background:#9a6bbf}
+  .vmeta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.76rem;color:var(--muted);margin-top:2px}
+  .vmeta .fmt{background:#fdf1e2;color:var(--amber);font-weight:700;padding:2px 8px;border-radius:6px}
+  .copybtn{margin-top:6px;border:1.5px solid var(--orange);background:#fff;color:var(--orange);
+    font-family:"Heebo";font-weight:700;font-size:.86rem;padding:8px 12px;border-radius:11px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.16s;width:100%}
+  .copybtn:hover{background:var(--orange);color:#fff}
+  .copybtn.mini{width:auto;padding:6px 12px;font-size:.8rem}
+  .copybtn.dl{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;border-color:transparent;text-decoration:none}
+  .copybtn.dl:hover{filter:brightness(1.07);color:#fff}
+  .btnrow{display:flex;gap:8px;margin-top:6px}
+  .btnrow .copybtn{margin-top:0}
+  /* platform download chips */
+  .pdl{margin-top:8px}
+  .pdl .plabel{font-size:.73rem;color:var(--muted);font-weight:700;margin-bottom:5px}
+  .pchips{display:flex;flex-wrap:wrap;gap:5px}
+  .pchip{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;font-weight:700;font-family:"Heebo";
+    text-decoration:none;color:var(--navy);background:#fff7ef;border:1px solid var(--line);border-radius:9px;
+    padding:4px 8px;transition:.14s;cursor:pointer}
+  .pchip:hover{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;border-color:transparent}
+  .pchip b{font-size:.63rem;opacity:.65;font-weight:800}
+  .pchip:hover b{opacity:.95}
+  /* collapsible guide */
+  details.guide{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  details.guide>summary{cursor:pointer;list-style:none;padding:16px 20px;font-family:"Heebo";font-weight:800;
+    color:var(--navy);font-size:1.02rem;display:flex;align-items:center;justify-content:space-between}
+  details.guide>summary::-webkit-details-marker{display:none}
+  details.guide>summary .ind{color:var(--orange);font-size:1.2rem;transition:.2s}
+  details.guide[open]>summary .ind{transform:rotate(45deg)}
+  details.guide .gbody{padding:0 20px 20px}
+
+  /* ===== IMAGE / POST GALLERY ===== */
+  .imgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+  .icard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s}
+  .icard:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+  .icard .imglink{display:block;position:relative;aspect-ratio:9/16;overflow:hidden;background:#fdf3e6}
+  .icard .imglink img{width:100%;height:100%;object-fit:cover;display:block}
+  .icard .num{position:absolute;top:10px;right:10px;background:rgba(31,42,68,.82);color:#fff;
+    font-family:"Heebo";font-weight:800;font-size:.72rem;padding:3px 9px;border-radius:20px;z-index:2}
+  .icard .go{position:absolute;inset:auto 0 0 0;text-align:center;color:#fff;font-family:"Heebo";
+    font-weight:800;font-size:.9rem;padding:30px 12px 12px;opacity:0;transition:.2s;
+    background:linear-gradient(180deg,transparent,rgba(31,42,68,.9))}
+  .icard .imglink:hover .go{opacity:1}
+  .icard .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .icard .lblc{align-self:flex-start;font-family:"Heebo";font-size:.7rem;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,var(--orange),var(--gold));padding:2px 10px;border-radius:20px}
+  .icard .cap{font-family:"Heebo";font-size:.96rem;font-weight:800;color:var(--navy);line-height:1.3}
+  .icard .link{margin-top:auto;font-size:.82rem;color:var(--orange);font-weight:700;text-decoration:none;
+    display:inline-flex;align-items:center;gap:5px}
+  .icard .link:hover{text-decoration:underline}
+
+  /* ===== FORMAT EXPLORER ===== */
+  .explorer{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);
+    padding:22px;display:grid;grid-template-columns:1.15fr 1fr;gap:26px}
+  @media(max-width:760px){.explorer{grid-template-columns:1fr}}
+  .platbtns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+  .platbtns button{font-family:"Heebo";font-weight:700;font-size:.85rem;padding:8px 13px;border-radius:12px;
+    border:1.5px solid var(--line);background:#fff7ef;color:var(--navy);cursor:pointer;transition:.16s}
+  .platbtns button:hover{border-color:var(--orange)}
+  .platbtns button.active{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(238,122,48,.35)}
+  .ex-info .badge{display:inline-block;background:#fdf1e2;color:var(--amber);font-weight:800;font-family:"Heebo";
+    font-size:.8rem;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+  .ex-info h3{font-size:1.3rem;color:var(--navy);margin-bottom:4px}
+  .specrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .spec{background:#fbf5ec;border:1px solid var(--line);border-radius:11px;padding:8px 12px;min-width:88px}
+  .spec .k{font-size:.72rem;color:var(--muted);font-weight:600}
+  .spec .v{font-family:"Heebo";font-weight:800;color:var(--navy);font-size:1.02rem}
+  .why{background:#fff8f0;border-right:4px solid var(--orange);border-radius:0 12px 12px 0;
+    padding:12px 15px;font-size:.94rem;color:#5a4a38;line-height:1.6;margin:12px 0 14px}
+  .fitnote{font-size:.84rem;font-weight:700;padding:8px 12px;border-radius:10px;display:flex;align-items:center;gap:8px}
+  .fit-native{background:#e8f7ee;color:#1d7a44}
+  .fit-crop{background:#fdf3e0;color:#a8761a}
+  .fit-letterbox{background:#fdeee6;color:#b5541f}
+  .ex-preview{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .previewbox{background:repeating-conic-gradient(#f3e7d5 0% 25%,#efe0c9 0% 50%) 50%/22px 22px;
+    border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line),0 8px 24px rgba(160,110,50,.18);
+    max-width:100%;max-height:440px;display:flex;align-items:center;justify-content:center;transition:.35s ease}
+  .previewbox video{width:100%;height:100%;display:block}
+  .previewpick{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .previewpick button{font-size:.76rem;font-weight:700;font-family:"Heebo";border:1px solid var(--line);
+    background:#fff;color:var(--navy);border-radius:8px;padding:5px 10px;cursor:pointer}
+  .previewpick button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .dimline{font-family:"Heebo";font-weight:800;color:var(--navy);font-size:1.05rem}
+
+  /* ===== TABLE ===== */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);background:#fff}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{text-align:right;padding:13px 15px;border-bottom:1px solid var(--line);font-size:.9rem;vertical-align:top}
+  th{background:#fbf1e3;font-family:"Heebo";font-weight:800;color:var(--navy);font-size:.86rem;position:sticky;top:0}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#fffaf3}
+  td .ratio{font-family:"Heebo";font-weight:800;color:var(--orange)}
+  td .dims{color:var(--muted);font-size:.82rem}
+  td.why-c{color:#5a4a38;max-width:320px}
+
+  /* ===== COPY BLOCKS ===== */
+  .copygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .copyblock{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  .copyblock .lbl{display:inline-block;font-family:"Heebo";font-weight:800;font-size:.78rem;color:#fff;
+    background:linear-gradient(135deg,var(--orange),var(--gold));padding:3px 11px;border-radius:20px;margin-bottom:10px}
+  .copyblock h4{font-family:"Heebo";font-size:1.05rem;color:var(--navy);margin-bottom:6px}
+  .field{margin-bottom:12px}
+  .field .fk{font-size:.74rem;font-weight:700;color:var(--muted);margin-bottom:3px}
+  .field .fv{background:#fbf5ec;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:.9rem;
+    color:#3a3128;position:relative;line-height:1.55}
+  .field .copyicon{position:absolute;left:7px;top:7px;background:#fff;border:1px solid var(--line);border-radius:8px;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;transition:.15s}
+  .field .copyicon:hover{background:var(--orange);border-color:var(--orange)}
+  .field .fv.haspad{padding-left:44px}
+
+  /* ===== ASSETS ===== */
+  .assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+  .asset{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .asset .ai{font-size:1.6rem}
+  .asset h4{font-family:"Heebo";font-size:1rem;color:var(--navy);margin:6px 0 3px}
+  .asset p{font-size:.85rem;color:var(--muted)}
+  .asset code{background:#fdf1e2;color:var(--amber);padding:1px 6px;border-radius:5px;font-size:.8rem;word-break:break-all}
+
+  .hashbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .hash{background:#fff3e2;border:1px solid var(--line);color:var(--amber);font-weight:700;font-size:.85rem;
+    padding:6px 12px;border-radius:20px;cursor:pointer;transition:.15s}
+  .hash:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
+
+  .addnote{background:#fffaf0;border:1px dashed var(--gold);border-radius:14px;padding:14px 18px;margin-top:22px;
+    font-size:.9rem;color:#6a5638}
+  .addnote b{color:var(--amber)}
+
+  .foot{text-align:center;color:var(--muted);font-size:.85rem;margin-top:50px;padding-top:24px;border-top:1px solid var(--line)}
+
+  /* ===== TOAST ===== */
+  #toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(30px);
+    background:var(--navy);color:#fff;font-family:"Heebo";font-weight:700;padding:12px 24px;border-radius:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:.28s;z-index:100;font-size:.95rem}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="kicker">🐟 GoldFish · www.goldfish.co.il</span>
+    <h1>מרכז הקמפיין של <span class="fish">גולדי</span></h1>
+    <p class="sub">כל הסרטונים והפרסום של גולדפיש במקום אחד — עם בוחר-גדלים לכל רשת חברתית, הסבר למה כל גודל מתאים, וקופי מוכן להעתקה.</p>
+    <div class="rule"></div>
+    <div class="hstats">
+      <div class="hstat"><b id="stat-count">4</b><span>סרטונים מוכנים</span></div>
+      <div class="hstat"><b>9:16</b><span>פורמט מקור</span></div>
+      <div class="hstat"><b>9</b><span>רשתות / פורמטים</span></div>
+      <div class="hstat"><b>חם</b><span>כתום · זהב · קרם</span></div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="jump">
+    <a href="#videos">🎬 הסרטונים</a>
+    <a href="#creatives">🖼️ הפוסטים</a>
+    <a href="#copy">✍️ קופי</a>
+    <a href="#assets">🎒 נכסים</a>
+  </nav>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <div class="sec-head">
+      <h2><span class="em">🎬</span> הסרטונים</h2>
+      <p>לחצו ▶ לצפייה. מתחת לכל סרטון — <b>כפתור לכל רשת</b>: לחיצה מורידה מיד את הסרטון <b>מותאם בול לרשת הזו</b> (פייסבוק 4:5, לינקדאין 1:1, יוטיוב 16:9, רילז/טיקטוק 9:16).</p>
+    </div>
+    <div class="vgrid" id="vgrid"><!-- filled by JS --></div>
+    <div class="addnote">
+      💡 <b>איך מוסיפים סרטון חדש?</b> פותחים את הקובץ הזה בעורך, מוצאים את המערך <b>VIDEOS</b> למעלה ב-JavaScript, ומעתיקים בלוק אחד קיים. משנים <code>title</code>, <code>hook</code>, <code>file</code> (שם קובץ ה-mp4 שנמצא בתיקיית Downloads) — והכרטיס יופיע אוטומטית. (או פשוט בקשו ממני "תוסיפי סרטון 5".)
+    </div>
+  </section>
+
+  <!-- CREATIVES / POSTS -->
+  <section id="creatives">
+    <div class="sec-head">
+      <h2><span class="em">🖼️</span> הפוסטים לרשתות</h2>
+      <p>9 קריאייטיבים מעוצבים (9:16) לפי שלושת הקמפיינים. <b>לחיצה על כל תמונה מובילה לדף הנחיתה</b> — www.goldfish.co.il. הקבצים בתיקייה <code>campaign-images/</code>.</p>
+    </div>
+    <div class="imgrid" id="imgrid"><!-- filled by JS --></div>
+    <div class="addnote">
+      🔗 <b>כל תמונה לחיצה = קישור לדף הנחיתה.</b> בפרסום ברשתות, שימו את הקישור <code>www.goldfish.co.il</code> בכיתוב או בביו — כי תמונה שמתפרסמת אינה לחיצה מעצמה. רוצים שאדפיס את הכתובת גם על התמונות עצמן? בקשו.
+    </div>
+  </section>
+
+  <!-- GUIDE (collapsible) -->
+  <section id="guide">
+    <details class="guide">
+      <summary><span>📋 מדריך הגדלים — למה כל רשת מקבלת גודל אחר (לחצו לפתיחה)</span><span class="ind">＋</span></summary>
+      <div class="gbody">
+        <div class="tablewrap" style="box-shadow:none;border:1px solid var(--line);margin-top:6px">
+          <table id="guidetable">
+            <thead><tr><th>רשת / מיקום</th><th>יחס + מידות</th><th>אורך</th><th>למה הגודל הזה מתאים</th></tr></thead>
+            <tbody><!-- filled by JS --></tbody>
+          </table>
+        </div>
+        <div class="addnote" style="border-color:var(--orange)">
+          🎯 <b>הכפתורים מתחת לכל סרטון כבר עושים את זה בשבילכם:</b> 9:16 לרילז/סטורי/טיקטוק/וואטסאפ · 4:5 לפייסבוק ולפיד אינסטגרם · 1:1 ללינקדאין · 16:9 ליוטיוב.
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- COPY -->
+  <section id="copy">
+    <div class="sec-head">
+      <h2><span class="em">✍️</span> קופי מוכן להעתקה</h2>
+      <p>כותרות, תיאורים ו-CTA לפי שלושת הקמפיינים בבריף. לחצו על 📋 ליד כל שדה כדי להעתיק.</p>
+    </div>
+    <div class="copygrid" id="copygrid"><!-- filled by JS --></div>
+  </section>
+
+  <!-- ASSETS -->
+  <section id="assets">
+    <div class="sec-head">
+      <h2><span class="em">🎒</span> נכסים משותפים</h2>
+      <p>מרכיבים שחוזרים בכל הסרטונים והפוסטים.</p>
+    </div>
+    <div class="assets">
+      <div class="asset">
+        <div class="ai">🏁</div><h4>סצנת סיום (Outro)</h4>
+        <p>כרטיס לבן ממותג + קונפטי · "יש מענק שמחכה לכם"</p>
+        <p style="margin-top:6px"><code>goldfish_white_cta_outro_v6_confetti_vertical.mp4</code></p>
+      </div>
+      <div class="asset">
+        <div class="ai">🎙️</div><h4>קול גולדי</h4>
+        <p>ElevenLabs v13 · חם, גברי-צעיר</p>
+        <p style="margin-top:6px"><code>wo6udizrrtpIxWGp2qJk</code></p>
+      </div>
+      <div class="asset">
+        <div class="ai">📖</div><h4>תנ״ך הדמות</h4>
+        <p>זהות, קול, כן/לא, בנק משפטים</p>
+        <p style="margin-top:6px"><a href="character-bible.html">character-bible.html ↗</a></p>
+      </div>
+      <div class="asset">
+        <div class="ai">🎨</div><h4>פלטת מותג</h4>
+        <p>כתום #EE7A30 · זהב #F5A623 · קרם. <b>אסור כחול-קר.</b></p>
+      </div>
+    </div>
+    <h3 style="font-family:Heebo;color:var(--navy);margin:26px 0 4px;font-size:1.1rem">האשטגים (לחיצה = העתקה)</h3>
+    <div class="hashbar" id="hashbar"><!-- filled by JS --></div>
+  </section>
+
+  <div class="foot">🐟 GoldFish · מרכז קמפיין פנימי · מיטל + Claude · עודכן 25.7.2026</div>
+</div>
+
+<div id="toast">הועתק ✓</div>
+
+<script>
+/* ============================================================
+   VIDEOS — כדי להוסיף סרטון: העתק בלוק { ... } ושנה את השדות.
+   file = שם קובץ ה-mp4 שנמצא בתיקיית Downloads.
+   status: 'ok' (הופק) | 'next' (הבא בתור) | 'var' (וריאנט)
+   ============================================================ */
+const VIDEOS = [
+  {
+    n:1, title:'היי, אני גולדי', status:'ok',
+    file:'Goldi-01-video1-CTA.mp4',
+    hook:'"אני צולל בים המענקים ומביא לכם רק את מה שמתאים"',
+    caption:'הכירו את גולדי 🐟\nהוא צולל בים המענקים ומביא לעמותה שלכם רק את הקולות-הקוראים שמתאימים בול.\nפחות זמן על חיפוש — יותר זמן על שינוי העולם.\n\nרוצים שגולדי יעבוד גם אצלכם? הצטרפו לרשימה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:2, title:'למה דג?', status:'ok',
+    file:'Goldi-02-video2-CTA.mp4',
+    hook:'"זיכרון של דג? אני זוכר כל קול קורא" 🦪',
+    caption:'"זיכרון של דג"? לא אצל גולדי 🐟\nהוא זוכר כל קול קורא, כל דדליין וכל מסמך — וצולל להביא לכם את הפנינה שמתאימה.\n\nהצטרפו לרשימת ההמתנה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:3, title:'טעות שעולה לכם כסף', status:'ok',
+    file:'Goldi-03-video3-CTA.mp4',
+    hook:'"300 אלף שקלים — התגלה יום אחרי הדדליין"',
+    caption:'300 אלף שקל של מימון — שהתגלו יום אחרי הדדליין 😮\nזה קורה כשאין מי שעוקב אחרי עשרות המאגרים.\nגולדי צולל בשבילכם ולא נותן להזדמנות לברוח.\n\nלא מפספסים יותר אף הזדמנות 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:4, title:'קורות חיים של גולדי', status:'ok',
+    file:'Goldi-04-video4-CTA.mp4',
+    hook:'"הכישורים שלי: זריז · בורח מחכות · כותב מענקים מהחיים"',
+    caption:'דרוש: ראש מחלקת גיוס-משאבים 🐟\nקורות חיים של גולדי: זריז, זוכר כל דדליין, מאתר קולות-קוראים מכל המאגרים, ואפילו עוזר לכתוב טיוטה ראשונה.\n\nרוצים שגולדי יעבוד גם אצלכם? הצטרפו לרשימה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:'4b', title:'קורות חיים — גרסת הומור', status:'var',
+    file:'Goldi-04-video4b-CTA.mp4',
+    hook:'גרסה מצחיקה יותר עם CTA מודגש בסוף',
+    caption:'דרוש: ראש מחלקת גיוס-משאבים 🐟 (הגרסה המצחיקה)\nגולדי — זריז, שנון, ובורח מחכות. מאתר לכם קולות-קוראים ומכין את ההגשה.\n\nהצטרפו לרשימה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:5, title:'קוקטייל בחוף', status:'ok',
+    file:'Goldi-05-FINAL.mp4',
+    hook:'"בזמן שאתם נחים — אני עובד. עוד מעט זה יכול להיות אתם"',
+    caption:'יום עבודה של גולדי נראה ככה 🕶️\nאני צולל, מחפש ומוצא לכם התאמה — ואתם? נחים על הכיסא.\nתנו לי לעבוד, ואתם כבר תיהנו מהתוצאה.\n\nרוצים שגולדי יעבוד גם אצלכם? הצטרפו לרשימה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  },
+  {
+    n:6, title:'קופץ למים — שוחה בשבילכם', status:'ok',
+    file:'Goldi-06-FINAL.mp4',
+    hook:'"אתם נחים, אני צולל 🤿 — ומוציא לכם את הפנינה שמתאימה"',
+    caption:'רגע לפני שאתם מגישים בקשה — עצרו 🤿\nזה בדיוק הרגע שאני קופץ למים: צולל בין מאות קולות-קוראים ומוציא לכם רק את הפנינה שמתאימה לעמותה שלכם.\n\nרוצים שגולדי יעבוד גם אצלכם? הצטרפו לרשימה 👇\nwww.goldfish.co.il\n#גיוס_משאבים #עמותות #מענקים'
+  }
+];
+
+/* PLATFORMS — כל פורמט: יחס, מידות, אורך, ולמה הוא מתאים */
+const PLATFORMS = [
+  { id:'ig-reels', name:'אינסטגרם · Reels', tag:'מנוע התגלות מס\' 1', ratio:'9:16', w:1080, h:1920, len:'עד 90 שניות', fit:'native',
+    why:'מסך מלא אנכי. האלגוריתם דוחף רילז גם לאנשים שלא עוקבים אחריכם — זה מנוע הצמיחה הכי חזק כרגע. זה הפורמט המקורי של הסרטונים שלנו, מתאים מושלם.' },
+  { id:'ig-stories', name:'אינסטגרם · Stories', tag:'אישי + לינק/סטיקר', ratio:'9:16', w:1080, h:1920, len:'עד 60 שניות לכרטיס', fit:'native',
+    why:'נעלם תוך 24 שעות, אינטימי ומיידי. כאן שמים סטיקר "רשימת המתנה" או לינק ישיר. אותו קובץ 9:16 בדיוק — בלי עיבוד נוסף.' },
+  { id:'ig-feed', name:'אינסטגרם · פיד', tag:'נשאר בפרופיל', ratio:'4:5', w:1080, h:1350, len:'עד 60 דקות', fit:'crop',
+    why:'תופס הכי הרבה גובה בפיד הנגלל בלי להיחתך — יותר מסך משמעו יותר תשומת-לב מ-1:1. זה הפוסט שנשאר לתמיד בפרופיל (בניגוד לרילז/סטורי החולפים).' },
+  { id:'tiktok', name:'טיקטוק', tag:'טבעי לפלטפורמה', ratio:'9:16', w:1080, h:1920, len:'עד 10 דקות', fit:'native',
+    why:'מסך מלא אנכי הוא הפורמט היחיד בטיקטוק. אותו 9:16 מקורי — שווה לפרסם גם כאן כי הצמיחה האורגנית בטיקטוק עדיין גבוהה.' },
+  { id:'yt-shorts', name:'יוטיוב · Shorts', tag:'נשאר לחיפוש', ratio:'9:16', w:1080, h:1920, len:'עד 60 שניות', fit:'native',
+    why:'שורטס אנכי מלא. היתרון הייחודי: נשאר לחיפוש בגוגל וביוטיוב לאורך זמן — לא רק בפיד רגעי — כך שהוא ממשיך להביא צפיות חודשים אחרי.' },
+  { id:'yt', name:'יוטיוב · רגיל', tag:'דסקטופ + הטמעה', ratio:'16:9', w:1920, h:1080, len:'ללא הגבלה', fit:'letterbox',
+    why:'הפורמט הרוחבי הקלאסי. צריך אותו ליוטיוב ארוך, להטמעה באתר/מייל ולמצגות. סרטון 9:16 ייכנס לכאן עם פסים בצדדים — לרוב עדיף לרנדר גרסת 16:9 ייעודית.' },
+  { id:'fb', name:'פייסבוק · פיד + Reels', tag:'קהל מבוגר יותר', ratio:'4:5 / 9:16', w:1080, h:1350, len:'משתנה', fit:'crop',
+    why:'ל-Reels/Stories שלחו 9:16, לפיד שלחו 4:5. קהל פייסבוק נוטה מבוגר יותר — לכן מסר ברור וטקסט על המסך קריטיים, כי רובם צופים בהשתקה.' },
+  { id:'linkedin', name:'לינקדאין', tag:'B2B · מקבלי החלטות', ratio:'1:1 / 16:9', w:1080, h:1080, len:'עד 10 דקות', fit:'crop',
+    why:'קהל מקצועי שנצפה לרוב בדסקטופ — לכן 1:1 או 16:9 עדיפים על אנכי. כאן יושבים מנכ"לי עמותות ומקבלי החלטות מימון. שמרו על טון מקצועי-ענייני.' },
+  { id:'whatsapp', name:'וואטסאפ · סטטוס', ratio:'9:16', tag:'הפצה ישירה', w:1080, h:1920, len:'עד 30 שניות', fit:'native',
+    why:'סטטוס אנכי מלא, מצוין להפצה ישירה לרשת הקשרים ולקבוצות עמותות. שמרו קצר — עד 30 שניות — כי סטטוס ארוך נחתך.' }
+];
+
+/* CAMPAIGN COPY — מתוך הבריף */
+const CAMPAIGNS = [
+  { lbl:'א · היכרות', title:'גולדי צולל אל המענקים שלכם',
+    desc:'הכירו את גולדי — סוכן ה-AI שצולל אל ים המענקים ומביא לכם רק את ההתאמות המדויקות. פחות זמן על חיפוש, יותר זמן על שינוי העולם: גולדי מאתר עבורכם את הקולות-הקוראים שמתאימים בול לעמותה שלכם.',
+    cta:'הצטרפו לרשימת ההמתנה' },
+  { lbl:'ב · רשימת המתנה', title:'לא מפספסים יותר אף הזדמנות',
+    desc:'עשרות מאגרים, דדליינים שבורחים, ואף פעם לא ברור מה חסר להגשה. גולדי צולל בשבילכם בים המענקים, מאתר את הקולות-הקוראים שמתאימים לעמותה, ומכין את הקרקע להגשה. הצטרפו עכשיו לרשימת ההמתנה — המצטרפים הראשונים מקבלים גישה מוקדמת וערכת "לא מפספסים קול קורא".',
+    cta:'הצטרפו לצלילה הראשונה' },
+  { lbl:'ג · הדגמת-ערך', title:'ככה גולדי עובד בשבילכם',
+    desc:'גולדי לא סתם דג-זהב חמוד — הוא ראש מחלקת הצלילות שלכם. הוא מאתר קולות-קוראים מכל המאגרים, מדרג אותם לפי ההתאמה לעמותה שלכם, מזהה מה חסר להגשה, ואפילו עוזר לכתוב טיוטה ראשונה — וזוכר כל דדליין ומסמך. אתם מתמקדים בעשייה, גולדי דואג להזדמנויות.',
+    cta:'רוצים שגולדי יעבוד גם אצלכם? הצטרפו לרשימה' }
+];
+
+const HASHTAGS = ['#גיוס_משאבים','#עמותות','#מענקים','#קולות_קוראים','#מגזר_שלישי','#גולדי','#GoldFish','#עמותה','#מימון'];
+
+/* CREATIVES — פוסטים מעוצבים. file = בתיקיית campaign-images/ ליד הדף.
+   כל תמונה עטופה בקישור LANDING (לחיצה). כדי להוסיף: העתק שורה ושנה. */
+const LANDING = 'https://goldfish.co.il/';
+const CREATIVES = [
+  {id:'c1-01', lbl:'א · היכרות',     cap:'אתם ישנים. אני קורא קולות קוראים.', file:'c1-01.png'},
+  {id:'c1-02', lbl:'א · היכרות',     cap:'עברתי מאקווריום למלכ״רים.',          file:'c1-02.png'},
+  {id:'c1-03', lbl:'א · היכרות',     cap:'חברים יצאו לים. אני כבר בים.',       file:'c1-03.png'},
+  {id:'c2-01', lbl:'ב · רשימת המתנה', cap:'המיליון כבר חולק. לא שמעתם עליו?',   file:'c2-01.png'},
+  {id:'c2-02', lbl:'ב · רשימת המתנה', cap:'הפורטל קרס באמצע ההגשה.',            file:'c2-02.png'},
+  {id:'c2-03', lbl:'ב · רשימת המתנה', cap:'אישור ניהול תקין פג לפני שבוע.',     file:'c2-03.png'},
+  {id:'c3-01', lbl:'ג · הדגמת-ערך',  cap:'לא יצאתי מהבית שבוע שלם.',           file:'c3-01.png'},
+  {id:'c3-02', lbl:'ג · הדגמת-ערך',  cap:'על מה לא שווה לשבת עד 3 בלילה?',     file:'c3-02.png'},
+  {id:'c3-03', lbl:'ג · הדגמת-ערך',  cap:'מזכיר לכם את נספח ז׳.',              file:'c3-03.png'},
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(msg){const t=$('#toast');t.textContent=msg||'הועתק ✓';t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1500);}
+function copy(text,msg){
+  navigator.clipboard.writeText(text).then(()=>toast(msg||'הועתק ✓')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');toast(msg||'הועתק ✓');}catch(e){toast('לא הצלחתי להעתיק');}
+    document.body.removeChild(ta);
+  });
+}
+const VDIR = 'videos/'; // כשהסרטונים יועלו לתיקיית videos/ בריפו — הם יופיעו כאן אוטומטית
+
+/* ---------- render videos ---------- */
+const chipClass={ok:'c-ok',next:'c-next',var:'c-var'};
+const chipText={ok:'הופק',next:'הבא בתור',var:'וריאנט'};
+/* פלטפורמה → יחס. 9x16 = קובץ המקור; השאר = גרסאות מרונדרות מראש. */
+const PLATDL=[
+  {ic:'📱',name:'רילז/סטורי',fmt:'9x16'},
+  {ic:'🎵',name:'טיקטוק',fmt:'9x16'},
+  {ic:'👍',name:'פייסבוק',fmt:'4x5'},
+  {ic:'📸',name:'פיד אינ׳',fmt:'4x5'},
+  {ic:'💼',name:'לינקדאין',fmt:'1x1'},
+  {ic:'▶️',name:'יוטיוב',fmt:'16x9'},
+  {ic:'💬',name:'וואטסאפ',fmt:'9x16'}
+];
+const RATIO={'9x16':'9:16','4x5':'4:5','1x1':'1:1','16x9':'16:9'};
+const fileFor=(v,fmt)=> fmt==='9x16' ? v.file : v.file.replace(/\.mp4$/i,'-'+fmt+'.mp4');
+const dlName=(v,p)=>`goldi-${v.n}-${p.fmt}.mp4`;
+$('#vgrid').innerHTML = VIDEOS.map(v=>`
+  <div class="vcard">
+    <div class="frame">
+      <span class="num">#${v.n}</span>
+      <video src="${VDIR}${encodeURIComponent(v.file)}" controls preload="metadata" playsinline onerror="this.outerHTML='<div class=&quot;novid&quot;>🎬 הסרטון עוד לא הועלה לגרסה המקוונת</div>'"></video>
+    </div>
+    <div class="body">
+      <span class="chip ${chipClass[v.status]}">${chipText[v.status]}</span>
+      <div class="ttl">${esc(v.title)}</div>
+      <div class="hook">${esc(v.hook)}</div>
+      <div class="pdl">
+        <div class="plabel">⬇️ הורדה מותאמת לרשת:</div>
+        <div class="pchips">${PLATDL.map(p=>`<a class="pchip" href="${VDIR}${encodeURIComponent(fileFor(v,p.fmt))}" download="${esc(dlName(v,p))}" title="${esc(p.name)} · ${RATIO[p.fmt]}">${p.ic} ${esc(p.name)}<b>${RATIO[p.fmt]}</b></a>`).join('')}</div>
+      </div>
+      <button class="copybtn" data-cap="${encodeURIComponent(v.caption)}">📋 העתק כיתוב לפוסט</button>
+    </div>
+  </div>`).join('');
+$('#stat-count').textContent = VIDEOS.filter(v=>v.status==='ok').length;
+document.querySelectorAll('.copybtn[data-cap]').forEach(b=>{
+  b.addEventListener('click',()=>copy(decodeURIComponent(b.dataset.cap),'הכיתוב הועתק ✓'));
+});
+
+/* ---------- render creatives (clickable → landing) ---------- */
+$('#imgrid').innerHTML = CREATIVES.map(c=>`
+  <div class="icard">
+    <a class="imglink" href="${LANDING}" target="_blank" rel="noopener">
+      <span class="num">${esc(c.id)}</span>
+      <img src="campaign-images/${encodeURIComponent(c.file)}" alt="${esc(c.cap)}" loading="lazy">
+      <span class="go">↗ לדף הנחיתה</span>
+    </a>
+    <div class="body">
+      <span class="lblc">${esc(c.lbl)}</span>
+      <div class="cap">${esc(c.cap)}</div>
+      <a class="link" href="${LANDING}" target="_blank" rel="noopener">🔗 www.goldfish.co.il</a>
+    </div>
+  </div>`).join('');
+
+/* ---------- guide table ---------- */
+$('#guidetable tbody').innerHTML = PLATFORMS.map(p=>`
+  <tr>
+    <td><b>${esc(p.name)}</b></td>
+    <td><span class="ratio">${esc(p.ratio)}</span><br><span class="dims">${p.w}×${p.h}px</span></td>
+    <td>${esc(p.len)}</td>
+    <td class="why-c">${esc(p.why)}</td>
+  </tr>`).join('');
+
+/* ---------- copy blocks ---------- */
+$('#copygrid').innerHTML = CAMPAIGNS.map(c=>`
+  <div class="copyblock">
+    <span class="lbl">${esc(c.lbl)}</span>
+    <div class="field">
+      <div class="fk">כותרת</div>
+      <div class="fv haspad"><span class="copyicon" data-copy="${encodeURIComponent(c.title)}">📋</span>${esc(c.title)}</div>
+    </div>
+    <div class="field">
+      <div class="fk">תיאור</div>
+      <div class="fv haspad"><span class="copyicon" data-copy="${encodeURIComponent(c.desc)}">📋</span>${esc(c.desc)}</div>
+    </div>
+    <div class="field" style="margin-bottom:0">
+      <div class="fk">CTA</div>
+      <div class="fv haspad"><span class="copyicon" data-copy="${encodeURIComponent(c.cta)}">📋</span>${esc(c.cta)}</div>
+    </div>
+  </div>`).join('');
+document.querySelectorAll('.copyicon').forEach(ic=>{
+  ic.addEventListener('click',()=>copy(decodeURIComponent(ic.dataset.copy)));
+});
+
+/* ---------- hashtags ---------- */
+$('#hashbar').innerHTML = HASHTAGS.map(h=>`<span class="hash">${esc(h)}</span>`).join('') +
+  `<span class="hash" style="background:var(--navy);color:#fff;border-color:var(--navy)" id="hash-all">📋 העתק הכל</span>`;
+document.querySelectorAll('.hash').forEach(h=>{
+  if(h.id==='hash-all')return;
+  h.addEventListener('click',()=>copy(h.textContent));
+});
+$('#hash-all').addEventListener('click',()=>copy(HASHTAGS.join(' '),'כל ההאשטגים הועתקו ✓'));
+</script>
+</body>
+</html>
